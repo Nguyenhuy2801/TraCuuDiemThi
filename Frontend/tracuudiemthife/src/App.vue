@@ -1,5 +1,6 @@
 <template>
   <Navbar></Navbar>
+  <div>{{ note }}</div>
   <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
@@ -7,7 +8,17 @@
   <router-view />
 </template>
 <script setup>
+import { onMounted } from 'vue'
+import {useNotesStore} from '@/store/moduleNotes'
 import Navbar from "@/components/base/Navbar.vue";
+import { computed } from 'vue';
+
+const storeNotes = useNotesStore()
+// const note = computed(store.note)
+
+onMounted(() =>{
+  storeNotes.getNotes()
+})
 </script>
 <style lang="scss">
 #app {
