@@ -24,9 +24,16 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item"> Home </a>
-
-        <a class="navbar-item"> Documentation </a>
+        <router-link class="navbar-item" to="/diemthiTHPT"
+          >Điểm tốt nghiệp THPT</router-link
+        >
+        <router-link class="navbar-item" to="/diemthi10"
+          >Điểm thi vào 10</router-link
+        >
+        <router-link class="navbar-item" to="/thongtintuyensinh"
+          >Thông tin tuyển sinh</router-link
+        >
+        <!-- <a class="navbar-item"> Documentation </a>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link"> More </a>
@@ -38,7 +45,7 @@
             <hr class="navbar-divider" />
             <a class="navbar-item"> Report an issue </a>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="navbar-end">
