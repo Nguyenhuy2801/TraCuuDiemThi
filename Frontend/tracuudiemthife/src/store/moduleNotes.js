@@ -1,6 +1,6 @@
 // import { createStore } from 'vuex'
 // import {db} from '@/js/firebase.js'
-// import { collection, getDocs } from "firebase/firestore"; 
+// import { collection, getDocs } from "firebase/firestore";
 
 // export default createStore({
 //   state: () =>{
@@ -25,30 +25,28 @@
 //   }
 // })
 
-import { defineStore } from 'pinia'
-import {db} from '@/js/firebase.js'
-import { collection, getDocs } from "firebase/firestore"; 
+import { defineStore } from "pinia";
+import { db } from "@/js/firebase.js";
+import { collection, getDocs } from "firebase/firestore";
 
-export const useNotesStore = defineStore('notes', {
-    state: () => {
-        return {
-            note: {}
-        }
+export const useNotesStore = defineStore("notes", {
+  state: () => {
+    return {
+      notes: [],
+    };
+  },
+  getters: {
+    doubleCount: (state) => state.count * 2,
+  },
+  actions: {
+    increment() {
+      this.count++;
     },
-    getters: {
-      doubleCount: (state) => state.count * 2,
+    async getNotes() {
+      const querySnapshot = await getDocs(collection(db, "notes"));
+      querySnapshot.docs.forEach((doc) => {
+        this.$state.notes.push(doc.data());
+      });
     },
-    actions: {
-      increment() {
-        this.count++
-      },
-        async getNotes(){
-            debugger
-            const querySnapshot = await getDocs(collection(db, "notes"));
-            querySnapshot.forEach((doc) => {
-                console.log(`${doc.Content} => ${doc.data()}`);
-            });
-            state.note = querySnapshot  
-        }
-    },
-  })
+  },
+});

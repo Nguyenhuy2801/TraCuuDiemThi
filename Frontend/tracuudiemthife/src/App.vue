@@ -8,17 +8,18 @@
   <router-view />
 </template>
 <script setup>
-import { onMounted } from 'vue'
-import {useNotesStore} from '@/store/moduleNotes'
+import { onMounted, ref } from "vue";
+import { useNotesStore } from "@/store/moduleNotes";
 import Navbar from "@/components/base/Navbar.vue";
-import { computed } from 'vue';
+import { computed } from "vue";
 
-const storeNotes = useNotesStore()
-// const note = computed(store.note)
+const storeNotes = useNotesStore();
+const note = ref();
 
-onMounted(() =>{
-  storeNotes.getNotes()
-})
+onMounted(() => {
+  storeNotes.getNotes();
+  (note.value = storeNotes.$state), notes;
+});
 </script>
 <style lang="scss">
 #app {
