@@ -1,24 +1,37 @@
 <template>
   <Navbar></Navbar>
-  <div>{{ note }}</div>
+  <!-- <div>{{ notes }}</div> -->
   <!-- <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
   </nav> -->
   <router-view />
+  <Popup></Popup>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, onCreated, ref } from "vue";
 import { useNotesStore } from "@/store/moduleNotes";
 import Navbar from "@/components/base/Navbar.vue";
+import Popup from "@/components/base/Popup.vue";
 import { computed } from "vue";
 
 const storeNotes = useNotesStore();
-const note = ref();
+const notes = ref();
+const showCongratulations = ref(true);
+const openNewTab = () => {
+  window.open("https://shopee.vn/", "_blank");
+};
+
+const closePopup = () => {
+  openNewTab();
+};
 
 onMounted(() => {
   storeNotes.getNotes();
-  (note.value = storeNotes.$state), notes;
+  notes.value = storeNotes.$state;
+  // setTimeout(() => {
+  //   openNewTab();
+  // }, 6000); // 60000 milliseconds = 1 phút
 });
 </script>
 <style lang="scss">

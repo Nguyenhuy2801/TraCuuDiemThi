@@ -2,19 +2,20 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://bulma.io">
-        <img
-          src="https://bulma.io/images/bulma-logo.png"
-          width="112"
-          height="28"
-        />
+        <div class="flex">
+          <div class="logo-app"></div>
+          <div class="logo">Tra Cứu Điểm Thi</div>
+        </div>
       </a>
 
       <a
         role="button"
         class="navbar-burger"
+        :class="{ 'is-active': showExpand }"
         aria-label="menu"
         aria-expanded="false"
         data-target="navbarBasicExample"
+        @click="showExpand = !showExpand"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -22,7 +23,11 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div
+      id="navbarBasicExample"
+      class="navbar-menu"
+      :class="{ 'is-active': showExpand }"
+    >
       <div class="navbar-start">
         <router-link class="navbar-item" to="/diemthiTHPT"
           >Điểm tốt nghiệp THPT</router-link
@@ -33,31 +38,35 @@
         <router-link class="navbar-item" to="/thongtintuyensinh"
           >Thông tin tuyển sinh</router-link
         >
-        <!-- <a class="navbar-item"> Documentation </a>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link"> More </a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item"> About </a>
-            <a class="navbar-item"> Jobs </a>
-            <a class="navbar-item"> Contact </a>
-            <hr class="navbar-divider" />
-            <a class="navbar-item"> Report an issue </a>
-          </div>
-        </div> -->
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light"> Log in </a>
-          </div>
-        </div>
       </div>
     </div>
   </nav>
 </template>
+<script setup>
+import { ref } from "vue";
+const showExpand = ref(false);
+</script>
+<style scss>
+.navbar {
+  padding: 0 !important;
+  .navbar-brand {
+    align-items: center;
+  }
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+.logo-app {
+  background: url("@/assets/image/logoApp1.png");
+  background-size: cover;
+  width: 70px;
+  height: 60px;
+}
+.logo {
+  color: #285430;
+  font-size: 26px;
+  font-weight: 500;
+  padding: 0 12px;
+}
+</style>
